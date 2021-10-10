@@ -1,5 +1,6 @@
 import "./index.css";
 import { useState, useEffect } from "react";
+import { Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
 import Auth from "./Auth";
 import Account from "./Account";
@@ -8,6 +9,7 @@ import SignUp from "./SignUp";
 import { getProfile } from "./db/profile";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function Home() {
           ...supabase.auth.session(),
           isCreated,
         };
+        setLoading(false);
         setSession(session);
       });
     }
@@ -34,7 +37,9 @@ export default function Home() {
     });
   }, []);
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
       <Nav session={session} />
       <main>
