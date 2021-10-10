@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, SelectField, TextInputField } from "evergreen-ui";
 import { createProfile } from "./db/profile";
+import { supabase } from "./supabaseClient";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [accountType, setAccountType] = useState("");
+
+  useEffect(() => {
+    const user = supabase.auth.user();
+    setEmail(user.email);
+  }, []);
 
   const handleSignUp = async () => {
     try {
@@ -31,7 +37,7 @@ export default function SignUp() {
         type="email"
         placeholder="Your email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        disabled
       />
 
       <SelectField
