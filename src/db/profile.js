@@ -17,12 +17,15 @@ export const getProfile = async () => {
 
 export const createProfile = async (type) => {
   const user = supabase.auth.user();
-  const values = {
-    id: user.id,
-    type,
-  };
+  const values = [
+    {
+      id: user.id,
+      type,
+    },
+  ];
 
-  return supabase.from("profiles").insert(values, {
-    returning: "minimal", // Don't return the value after inserting
+  return supabase.from(TABLE_NAME).insert(values, {
+    // Don't return the value after inserting
+    returning: "minimal",
   });
 };

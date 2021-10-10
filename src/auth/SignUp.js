@@ -6,7 +6,7 @@ import { supabase } from "../supabaseClient";
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [accountType, setAccountType] = useState("");
+  const [accountType, setAccountType] = useState("user");
 
   useEffect(() => {
     const user = supabase.auth.user();
@@ -46,9 +46,7 @@ export default function SignUp() {
         value={accountType}
         onChange={(e) => setAccountType(e.target.value)}
       >
-        <option value="user" selected>
-          User
-        </option>
+        <option value="user">User</option>
         <option value="admin">Admin</option>
       </SelectField>
 
