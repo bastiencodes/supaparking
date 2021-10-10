@@ -1,15 +1,18 @@
 import "./index.css";
 import { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 import { Spinner } from "evergreen-ui";
+
+import { ACCOUNT, HOME, RESERVATIONS } from "./routes";
 import { supabase } from "./supabaseClient";
+
+import Header from "./layout/Header";
+import SideNav from "./layout/SideNav";
+import SignUp from "./auth/SignUp";
 import LogIn from "./auth/LogIn";
 import Account from "./pages/Account";
-import Header from "./layout/Header";
-import SignUp from "./auth/SignUp";
+import Reservations from "./pages/Reservations";
 import { getProfile } from "./db/profile";
-import { Route, Switch } from "react-router-dom";
-import { ACCOUNT, HOME, RESERVATIONS } from "./routes";
-import SideNav from "./layout/SideNav";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -60,7 +63,7 @@ export default function Home() {
                   Home
                 </Route>
                 <Route path={RESERVATIONS} exact>
-                  Reservations
+                  <Reservations />
                 </Route>
                 <Route path={ACCOUNT} exact>
                   <Account session={session} />
