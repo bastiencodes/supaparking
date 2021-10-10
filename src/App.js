@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import Auth from "./Auth";
 import Account from "./Account";
+import Nav from "./Nav";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -16,12 +17,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container" style={{ padding: "50px 0 100px 0" }}>
-      {!session ? (
-        <Auth />
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
-    </div>
+    <>
+      <Nav session={session} />
+      <main>{!session ? <Auth /> : <Account session={session} />}</main>
+    </>
   );
 }
