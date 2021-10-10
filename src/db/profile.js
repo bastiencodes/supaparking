@@ -14,3 +14,16 @@ export const getProfile = async () => {
   // console.log(data, error, status);
   return { data, error, status };
 };
+
+export const createProfile = async ({ username }) => {
+  const user = supabase.auth.user();
+  const values = {
+    id: user.id,
+    username,
+    updated_at: new Date(),
+  };
+
+  return supabase.from("profiles").insert(values, {
+    returning: "minimal", // Don't return the value after inserting
+  });
+};

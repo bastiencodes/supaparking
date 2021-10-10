@@ -1,28 +1,13 @@
 import { useState } from "react";
 import { Button, SelectField, TextInputField } from "evergreen-ui";
-import { supabase } from "./supabaseClient";
+import { createProfile } from "./db/profile";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [accountType, setAccountType] = useState("");
 
-  const createProfile = async ({ username }) => {
-    setLoading(true);
-
-    const user = supabase.auth.user();
-    const values = {
-      id: user.id,
-      username,
-      updated_at: new Date(),
-    };
-
-    return supabase.from("profiles").insert(values, {
-      returning: "minimal", // Don't return the value after inserting
-    });
-  };
-
-  const handleSignUp = async (email) => {
+  const handleSignUp = async () => {
     try {
       setLoading(true);
       const { error } = await createProfile({ username: "test" });
