@@ -14,20 +14,23 @@ export default function Home() {
 
   useEffect(() => {
     async function getProfileAndSetSession() {
-      getProfile().then((res) => {
-        if (!res) return;
-        const { data, error, status } = res;
-        const isCreated = data && !error && status === 200;
-        console.log(
-          isCreated ? "User exists in DB." : "User does not exist in DB."
-        );
-        const session = {
-          ...supabase.auth.session(),
-          isCreated,
-        };
-        setLoading(false);
-        setSession(session);
-      });
+      getProfile()
+        .then((res) => {
+          if (!res) return;
+          const { data, error, status } = res;
+          const isCreated = data && !error && status === 200;
+          console.log(
+            isCreated ? "User exists in DB." : "User does not exist in DB."
+          );
+          const session = {
+            ...supabase.auth.session(),
+            isCreated,
+          };
+          setSession(session);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
 
     getProfileAndSetSession();
