@@ -13,6 +13,7 @@ import LogIn from "./auth/LogIn";
 import Account from "./pages/Account";
 import Reservations from "./pages/Reservations";
 import { getProfile } from "./db/profile";
+import Book from "./pages/Book";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,7 @@ export default function Home() {
             <main>
               <Switch>
                 <Route path={HOME} exact>
-                  Home
+                  <Book />
                 </Route>
                 <Route path={RESERVATIONS} exact>
                   <Reservations />

@@ -6,7 +6,7 @@ export default function SideNav() {
   return (
     <nav>
       <Link to={HOME}>
-        <Button>Home</Button>
+        <Button>Book</Button>
       </Link>
       <Link to={RESERVATIONS}>
         <Button>Reservations</Button>
