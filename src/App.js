@@ -48,7 +48,7 @@ export default function Home() {
         <LogIn />
       ) : session.isCreated ? (
         <>
-          <Header id="header" session={session} />
+          <Header session={session} />
           <main>
             <Account session={session} />
           </main>

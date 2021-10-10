@@ -3,7 +3,7 @@ import { supabase } from "./supabaseClient";
 
 export default function Header({ session }) {
   return (
-    <header border="default">
+    <header id="header" border="default">
       <Heading flex={1}>SupaParking</Heading>
       {session && session.isCreated ? (
         <Button onClick={() => supabase.auth.signOut()} iconAfter={LogOutIcon}>
