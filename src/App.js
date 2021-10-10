@@ -5,26 +5,14 @@ import Auth from "./Auth";
 import Account from "./Account";
 import Nav from "./Nav";
 import SignUp from "./SignUp";
-
-const getUser = async () => {
-  const user = supabase.auth.user();
-  if (!user) return null;
-  let { data, error, status } = await supabase
-    .from("profiles")
-    .select(`id`)
-    .eq("id", user.id)
-    .single();
-
-  // console.log(data, error, status);
-  return { data, error, status };
-};
+import { getProfile } from "./db/profile";
 
 export default function Home() {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
-    async function getUserAndSetSession() {
-      getUser().then((res) => {
+    async function getProfileAndSetSession() {
+      getProfile().then((res) => {
         if (!res) return;
         const { data, error, status } = res;
         const isCreated = data && !error && status === 200;
@@ -39,10 +27,10 @@ export default function Home() {
       });
     }
 
-    getUserAndSetSession();
+    getProfileAndSetSession();
 
     supabase.auth.onAuthStateChange(async (_event, session) => {
-      getUserAndSetSession();
+      getProfileAndSetSession();
     });
   }, []);
 
