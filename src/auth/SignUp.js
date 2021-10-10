@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, SelectField, TextInputField } from "evergreen-ui";
-import { createProfile } from "./db/profile";
-import { supabase } from "./supabaseClient";
+import { createProfile } from "../db/profile";
+import { supabase } from "../supabaseClient";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);

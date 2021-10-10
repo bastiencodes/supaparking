@@ -2,10 +2,10 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import { Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
-import Auth from "./Auth";
+import Auth from "./auth/Auth";
 import Account from "./Account";
 import Nav from "./Nav";
-import SignUp from "./SignUp";
+import SignUp from "./auth/SignUp";
 import { getProfile } from "./db/profile";
 
 export default function Home() {
