@@ -2,7 +2,7 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import { Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
-import Auth from "./auth/Auth";
+import LogIn from "./auth/LogIn";
 import Account from "./Account";
 import Nav from "./Nav";
 import SignUp from "./auth/SignUp";
@@ -44,7 +44,7 @@ export default function Home() {
       <Nav session={session} />
       <main>
         {!session ? (
-          <Auth />
+          <LogIn />
         ) : session.isCreated ? (
           <Account session={session} />
         ) : (
