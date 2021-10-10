@@ -33,6 +33,7 @@ export default function Auth() {
     <Pane padding={40}>
       <Heading>Supabase + React</Heading>
       <Text>Sign in via magic link with your email below</Text>
+
       <TextInputField
         id="email"
         label="Email"
