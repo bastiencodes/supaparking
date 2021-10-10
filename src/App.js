@@ -8,11 +8,13 @@ import SignUp from "./SignUp";
 
 const getUser = async () => {
   const user = supabase.auth.user();
+  if (!user) return null;
   let { data, error, status } = await supabase
     .from("profiles")
     .select(`id`)
     .eq("id", user.id)
     .single();
+
   // console.log(data, error, status);
   return { data, error, status };
 };
@@ -22,7 +24,9 @@ export default function Home() {
 
   useEffect(() => {
     async function getUserAndSetSession() {
-      getUser().then(({ data, error, status }) => {
+      getUser().then((res) => {
+        if (!res) return;
+        const { data, error, status } = res;
         const isCreated = data && !error && status === 200;
         console.log(
           isCreated ? "User exists in DB." : "User does not exist in DB."
