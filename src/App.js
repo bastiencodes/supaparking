@@ -41,16 +41,18 @@ export default function Home() {
     <Spinner />
   ) : (
     <>
-      <Nav session={session} />
-      <main>
-        {!session ? (
-          <LogIn />
-        ) : session.isCreated ? (
-          <Account session={session} />
-        ) : (
-          <SignUp />
-        )}
-      </main>
+      {!session ? (
+        <LogIn />
+      ) : session.isCreated ? (
+        <>
+          <Nav session={session} />
+          <main>
+            <Account session={session} />
+          </main>
+        </>
+      ) : (
+        <SignUp />
+      )}
     </>
   );
 }
