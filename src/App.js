@@ -4,7 +4,7 @@ import { Button, Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
 import LogIn from "./auth/LogIn";
 import Account from "./Account";
-import Header from "./Header";
+import Header from "./layout/Header";
 import SignUp from "./auth/SignUp";
 import { getProfile } from "./db/profile";
 import { Link, Route, Switch } from "react-router-dom";

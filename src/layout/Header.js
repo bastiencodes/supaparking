@@ -1,5 +1,5 @@
 import { Button, Heading, LogInIcon, LogOutIcon } from "evergreen-ui";
-import { supabase } from "./supabaseClient";
+import { supabase } from "../supabaseClient";
 
 export default function Header({ session }) {
   return (
