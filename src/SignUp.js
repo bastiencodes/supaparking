@@ -13,10 +13,10 @@ export default function SignUp() {
     setEmail(user.email);
   }, []);
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (type) => {
     try {
       setLoading(true);
-      const { error } = await createProfile({ username: "test" });
+      const { error } = await createProfile(type);
       if (error) throw error;
       setLoading(false);
       // TODO: get rid of hack by using react-router
@@ -56,7 +56,7 @@ export default function SignUp() {
         isLoading={loading}
         onClick={(e) => {
           e.preventDefault();
-          handleSignUp(email);
+          handleSignUp(accountType);
         }}
       >
         Continue

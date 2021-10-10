@@ -15,12 +15,11 @@ export const getProfile = async () => {
   return { data, error, status };
 };
 
-export const createProfile = async ({ username }) => {
+export const createProfile = async (type) => {
   const user = supabase.auth.user();
   const values = {
     id: user.id,
-    username,
-    updated_at: new Date(),
+    type,
   };
 
   return supabase.from("profiles").insert(values, {
