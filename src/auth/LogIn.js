@@ -20,7 +20,6 @@ export default function Auth() {
       if (error) throw error;
 
       toaster.notify("Check your email for the login link!");
-      setLoading(false);
       setEmail("");
     } catch (error) {
       alert(error.error_description || error.message);
