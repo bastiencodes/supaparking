@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-import { Spinner } from "evergreen-ui";
+import { Button, Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
 import LogIn from "./auth/LogIn";
 import Account from "./Account";
@@ -49,9 +49,15 @@ export default function Home() {
       ) : session.isCreated ? (
         <>
           <Header session={session} />
-          <main>
-            <Account session={session} />
-          </main>
+          <div className="container">
+            <nav>
+              <Button>Reservations</Button>
+              <Button>Account</Button>
+            </nav>
+            <main>
+              <Account session={session} />
+            </main>
+          </div>
         </>
       ) : (
         <SignUp />

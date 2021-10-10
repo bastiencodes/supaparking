@@ -29,6 +29,25 @@ body,
   border-bottom: 1px solid #edeff5;
 }
 
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+nav {
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 236px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 main {
   flex: 1;
 }
