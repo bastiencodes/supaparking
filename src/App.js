@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { Spinner } from "evergreen-ui";
 
 import { ACCOUNT, HOME, RESERVATIONS } from "./routes";
@@ -68,6 +68,7 @@ export default function Home() {
                 <Route path={ACCOUNT} exact>
                   <Account session={session} />
                 </Route>
+                <Redirect to={HOME} />
               </Switch>
             </main>
           </div>
