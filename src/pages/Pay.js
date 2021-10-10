@@ -17,7 +17,7 @@ export default function Pay() {
   const [loading, setLoading] = useState(false);
   const [licensePlate, setLicensePlate] = useState("");
   const [count, setCount] = useState(INITIAL_COUNT);
-  const [to, setTo] = useState(INITIAL_DATE);
+  const [expiry, setExpiry] = useState(INITIAL_DATE);
 
   const handlePay = async () => {
     try {
@@ -31,7 +31,7 @@ export default function Pay() {
       // const { error } = await supabase.auth.signIn({ email });
       // if (error) throw error;
 
-      console.log({ licensePlate, to: to.toISOString() });
+      console.log({ licensePlate, expiry: expiry.toISOString() });
 
       toaster.success("You have paid for the parking spot.");
       setLicensePlate("");
@@ -61,7 +61,7 @@ export default function Pay() {
   useEffect(() => {
     const updateDate = () => {
       const updatedDate = addMinutes(INITIAL_DATE, count * 5);
-      setTo(updatedDate);
+      setExpiry(updatedDate);
     };
 
     updateDate();
@@ -90,7 +90,7 @@ export default function Pay() {
         marginBottom={0}
       />
 
-      <Strong>{formatDate(to)}</Strong>
+      <Strong>{formatDate(expiry)}</Strong>
 
       <Card display="flex" gap="10px">
         <Button onClick={() => refreshCount()}>🔄</Button>
