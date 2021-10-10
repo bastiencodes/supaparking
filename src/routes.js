@@ -1,4 +1,4 @@
-export const HOME = "/";
+export const PAY = "/";
 
 export const RESERVATIONS = "/reservations";
 
