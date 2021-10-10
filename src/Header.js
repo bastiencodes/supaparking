@@ -1,17 +1,17 @@
 import { Button, Heading, LogInIcon, LogOutIcon } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
 
-export default function Nav({ session }) {
+export default function Header({ session }) {
   return (
-    <nav border="default">
+    <header border="default">
       <Heading flex={1}>SupaParking</Heading>
-      {!session ? (
-        <Button iconAfter={LogInIcon}>Log In</Button>
-      ) : (
+      {session && session.isCreated ? (
         <Button onClick={() => supabase.auth.signOut()} iconAfter={LogOutIcon}>
           Log Out
         </Button>
+      ) : (
+        <Button iconAfter={LogInIcon}>Log In</Button>
       )}
-    </nav>
+    </header>
   );
 }

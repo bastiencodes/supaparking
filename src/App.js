@@ -4,7 +4,7 @@ import { Spinner } from "evergreen-ui";
 import { supabase } from "./supabaseClient";
 import LogIn from "./auth/LogIn";
 import Account from "./Account";
-import Nav from "./Nav";
+import Header from "./Header";
 import SignUp from "./auth/SignUp";
 import { getProfile } from "./db/profile";
 
@@ -48,7 +48,7 @@ export default function Home() {
         <LogIn />
       ) : session.isCreated ? (
         <>
-          <Nav session={session} />
+          <Header id="header" session={session} />
           <main>
             <Account session={session} />
           </main>
