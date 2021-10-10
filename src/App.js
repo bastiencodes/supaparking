@@ -7,6 +7,8 @@ import Account from "./Account";
 import Header from "./Header";
 import SignUp from "./auth/SignUp";
 import { getProfile } from "./db/profile";
+import { Link, Route, Switch } from "react-router-dom";
+import { ACCOUNT, HOME, RESERVATIONS } from "./routes";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -51,11 +53,28 @@ export default function Home() {
           <Header session={session} />
           <div className="container">
             <nav>
-              <Button>Reservations</Button>
-              <Button>Account</Button>
+              <Link to={HOME}>
+                <Button>Home</Button>
+              </Link>
+              <Link to={RESERVATIONS}>
+                <Button>Reservations</Button>
+              </Link>
+              <Link to={ACCOUNT}>
+                <Button>Account</Button>
+              </Link>
             </nav>
             <main>
-              <Account session={session} />
+              <Switch>
+                <Route path={HOME} exact>
+                  Home
+                </Route>
+                <Route path={RESERVATIONS} exact>
+                  Reservations
+                </Route>
+                <Route path={ACCOUNT} exact>
+                  <Account session={session} />
+                </Route>
+              </Switch>
             </main>
           </div>
         </>
