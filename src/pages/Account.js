@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
-import { Button, Card, Heading } from "evergreen-ui";
+import { supabase } from "../supabaseClient";
+import { Card, Heading } from "evergreen-ui";
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
