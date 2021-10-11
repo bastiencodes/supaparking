@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, TextInputField, toaster } from "evergreen-ui";
+import { Button, Pane, TextInputField, toaster } from "evergreen-ui";
 import { checkIfReservationExpired } from "../db/reservations";
 
 export default function Check() {
@@ -27,7 +27,7 @@ export default function Check() {
   };
 
   return (
-    <>
+    <Pane display="flex" flexDirection="column" gap={8} width={400}>
       <TextInputField
         id="license-plate"
         type="text"
@@ -40,7 +40,6 @@ export default function Check() {
       />
 
       <Button
-        height={48}
         isLoading={loading}
         onClick={(e) => {
           e.preventDefault();
@@ -49,6 +48,6 @@ export default function Check() {
       >
         Check
       </Button>
-    </>
+    </Pane>
   );
 }
