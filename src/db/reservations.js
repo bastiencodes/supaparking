@@ -2,8 +2,20 @@ import { supabase } from "../supabaseClient";
 
 const TABLE_NAME = "reservations";
 
-export const getReservations = async () => {
-  const reservations = await supabase.from(TABLE_NAME);
+export const getPastReservations = async () => {
+  const reservations = await supabase
+    .from(TABLE_NAME)
+    .select("*")
+    .lt("expiry", new Date().toISOString());
+  console.log(reservations);
+  return reservations;
+};
+
+export const getCurrentReservations = async () => {
+  const reservations = await supabase
+    .from(TABLE_NAME)
+    .select("*")
+    .gt("expiry", new Date().toISOString());
   console.log(reservations);
   return reservations;
 };

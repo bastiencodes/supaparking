@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import { Pane, Table } from "evergreen-ui";
-import { formatDistanceToNow } from "date-fns";
-import { getReservations } from "../db/reservations";
+import { format, formatDistanceStrict, formatDistanceToNow } from "date-fns";
+import {
+  getCurrentReservations,
+  getPastReservations,
+} from "../db/reservations";
 
 export default function Reservations() {
-  const [reservations, setReservations] = useState([]);
+  const [past, setPast] = useState([]);
+  const [current, setCurrent] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await getReservations();
-      setReservations(data);
+      const { data: past } = await getPastReservations();
+      setPast(past);
+
+      const { data: current } = await getCurrentReservations();
+      setCurrent(current);
     };
 
     fetchData();
@@ -19,10 +27,11 @@ export default function Reservations() {
         <Table.Head>
           <Table.TextHeaderCell>Plate</Table.TextHeaderCell>
           <Table.TextHeaderCell>Remaining time</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Expiry</Table.TextHeaderCell>
+          <Table.TextHeaderCell>Expires</Table.TextHeaderCell>
         </Table.Head>
+
         <Table.Body height={240}>
-          {reservations.map((item) => (
+          {current.map((item) => (
             <Table.Row key={item.id}>
               <Table.TextCell>{item.license_plate}</Table.TextCell>
               <Table.TextCell>
@@ -30,7 +39,41 @@ export default function Reservations() {
                   addSuffix: true,
                 })}
               </Table.TextCell>
-              <Table.TextCell>{item.expiry}</Table.TextCell>
+              <Table.TextCell>
+                {format(new Date(item.expiry), "dd/MM/yyyy HH:mm")}
+              </Table.TextCell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+
+      <Table>
+        <Table.Head>
+          <Table.TextHeaderCell>Plate</Table.TextHeaderCell>
+          <Table.TextHeaderCell>Duration</Table.TextHeaderCell>
+          <Table.TextHeaderCell>Start</Table.TextHeaderCell>
+          <Table.TextHeaderCell>End</Table.TextHeaderCell>
+        </Table.Head>
+
+        <Table.Body height={240}>
+          {past.map((item) => (
+            <Table.Row key={item.id}>
+              <Table.TextCell>{item.license_plate}</Table.TextCell>
+              <Table.TextCell>
+                {formatDistanceStrict(
+                  new Date(item.created_at),
+                  new Date(item.expiry),
+                  {
+                    roundingMethod: "ceil",
+                  }
+                )}
+              </Table.TextCell>
+              <Table.TextCell>
+                {format(new Date(item.created_at), "dd/MM/yyyy HH:mm")}
+              </Table.TextCell>
+              <Table.TextCell>
+                {format(new Date(item.expiry), "dd/MM/yyyy HH:mm")}
+              </Table.TextCell>
             </Table.Row>
           ))}
         </Table.Body>
