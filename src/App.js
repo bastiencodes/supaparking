@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Spinner } from "evergreen-ui";
 
-import { ACCOUNT, PAY, RESERVATIONS } from "./routes";
+import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "./routes";
 import { supabase } from "./supabaseClient";
 
 import Header from "./layout/Header";
@@ -14,6 +14,7 @@ import Account from "./pages/Account";
 import Pay from "./pages/Pay";
 import Reservations from "./pages/Reservations";
 import { getProfile } from "./db/profile";
+import Check from "./pages/Check";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,9 @@ export default function Home() {
               <Switch>
                 <Route path={PAY} exact>
                   <Pay />
+                </Route>
+                <Route path={CHECK} exact>
+                  <Check />
                 </Route>
                 <Route path={RESERVATIONS} exact>
                   <Reservations />
