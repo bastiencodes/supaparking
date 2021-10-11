@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Button, Pane, TextInputField, toaster } from "evergreen-ui";
+import { Alert, Button, Pane, TextInputField, toaster } from "evergreen-ui";
 import { checkIfReservationExpired } from "../db/reservations";
 
 export default function Check() {
   const [loading, setLoading] = useState(false);
   const [licensePlate, setLicensePlate] = useState("");
+  const [reservationExpired, setReservationExpired] = useState(null);
 
   const handleCheck = async () => {
     try {
@@ -20,6 +21,7 @@ export default function Check() {
       );
       console.log("isReservationExpired", isReservationExpired);
 
+      setReservationExpired(isReservationExpired);
       setLicensePlate("");
     } finally {
       setLoading(false);
@@ -48,6 +50,20 @@ export default function Check() {
       >
         Check
       </Button>
+
+      {!loading && reservationExpired !== null ? (
+        reservationExpired ? (
+          <Alert
+            intent="success"
+            title={`${licensePlate} is valid.`}
+            marginBottom={32}
+          />
+        ) : (
+          <Alert intent="danger" title={`${licensePlate} has expired.`} />
+        )
+      ) : (
+        "Enter a license plate."
+      )}
     </Pane>
   );
 }
