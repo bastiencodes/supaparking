@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/supaparking/static/css/main.b92be420.chunk.css",
+    "main.js": "/supaparking/static/js/main.060fa4c0.chunk.js",
+    "main.js.map": "/supaparking/static/js/main.060fa4c0.chunk.js.map",
+    "runtime-main.js": "/supaparking/static/js/runtime-main.e004f740.js",
+    "runtime-main.js.map": "/supaparking/static/js/runtime-main.e004f740.js.map",
+    "static/js/2.5ee43407.chunk.js": "/supaparking/static/js/2.5ee43407.chunk.js",
+    "static/js/2.5ee43407.chunk.js.map": "/supaparking/static/js/2.5ee43407.chunk.js.map",
+    "static/js/3.a33179d2.chunk.js": "/supaparking/static/js/3.a33179d2.chunk.js",
+    "static/js/3.a33179d2.chunk.js.map": "/supaparking/static/js/3.a33179d2.chunk.js.map",
+    "index.html": "/supaparking/index.html",
+    "static/css/main.b92be420.chunk.css.map": "/supaparking/static/css/main.b92be420.chunk.css.map",
+    "static/js/2.5ee43407.chunk.js.LICENSE.txt": "/supaparking/static/js/2.5ee43407.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e004f740.js",
+    "static/js/2.5ee43407.chunk.js",
+    "static/css/main.b92be420.chunk.css",
+    "static/js/main.060fa4c0.chunk.js"
+  ]
+}
