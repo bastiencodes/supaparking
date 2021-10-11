@@ -8,6 +8,7 @@ import {
   toaster,
 } from "evergreen-ui";
 import { format, addMinutes } from "date-fns";
+import { createReservation } from "../db/reservations";
 
 const INITIAL_DATE = new Date();
 
@@ -28,12 +29,17 @@ export default function Pay() {
         return;
       }
 
-      // const { error } = await supabase.auth.signIn({ email });
-      // if (error) throw error;
+      const reservation = {
+        license_plate: licensePlate,
+        expiry: expiry.toISOString(),
+      };
+      console.log(reservation);
 
-      console.log({ licensePlate, expiry: expiry.toISOString() });
+      const { error } = await createReservation(reservation);
+      if (error) throw error;
 
       toaster.success("You have paid for the parking spot.");
+
       setLicensePlate("");
       setCount(INITIAL_COUNT);
     } catch (error) {
