@@ -1,6 +1,6 @@
 import { Button } from "evergreen-ui";
 import { Link } from "react-router-dom";
-import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "../routes";
+import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "../routes/routes";
 
 export default function SideNav() {
   return (
