@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Spinner } from "evergreen-ui";
 
-import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "./routes";
+import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "./routes/routes";
 import { supabase } from "./supabaseClient";
 
 import Header from "./layout/Header";
@@ -33,6 +33,7 @@ export default function Home() {
           const session = {
             ...supabase.auth.session(),
             isCreated,
+            type: data.type,
           };
           setSession(session);
         })
@@ -73,7 +74,7 @@ export default function Home() {
                 <Route path={ACCOUNT} exact>
                   <Account session={session} />
                 </Route>
-                <Redirect to={PAY} />
+                <Redirect to={RESERVATIONS} />
               </Switch>
             </main>
           </div>
