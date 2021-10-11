@@ -6,7 +6,15 @@ export default function Header({ session }) {
     <header id="header" border="default">
       <Heading flex={1}>SupaParking</Heading>
       {session && session.isCreated ? (
-        <Button onClick={() => supabase.auth.signOut()} iconAfter={LogOutIcon}>
+        <Button
+          onClick={() => {
+            supabase.auth.signOut().then(() => {
+              // TODO: get rid of hack by using react-router
+              window.location.reload();
+            });
+          }}
+          iconAfter={LogOutIcon}
+        >
           Log Out
         </Button>
       ) : (
