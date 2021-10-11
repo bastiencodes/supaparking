@@ -7,7 +7,7 @@ export const getProfile = async () => {
   if (!user) return null;
   let { data, error, status } = await supabase
     .from(TABLE_NAME)
-    .select(`id`)
+    .select("type")
     .eq("id", user.id)
     .single();
 
