@@ -2,15 +2,19 @@ import { Button } from "evergreen-ui";
 import { Link } from "react-router-dom";
 import { ACCOUNT, CHECK, PAY, RESERVATIONS } from "../routes/routes";
 
-export default function SideNav() {
+export default function SideNav({ type }) {
   return (
     <nav>
-      <Link to={PAY}>
-        <Button>Pay</Button>
-      </Link>
-      <Link to={CHECK}>
-        <Button>Check</Button>
-      </Link>
+      {type === "user" ? (
+        <Link to={PAY}>
+          <Button>Pay</Button>
+        </Link>
+      ) : null}
+      {type === "admin" ? (
+        <Link to={CHECK}>
+          <Button>Check</Button>
+        </Link>
+      ) : null}
       <Link to={RESERVATIONS}>
         <Button>Reservations</Button>
       </Link>
