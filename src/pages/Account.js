@@ -5,6 +5,7 @@ import { Card, Heading } from "evergreen-ui";
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState(null);
+  const [type, setType] = useState(null);
   const [created_at, setCreatedAt] = useState(null);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Account({ session }) {
       }
 
       if (data) {
+        setType(data.type);
         setCreatedAt(data.created_at);
       }
     } catch (error) {
@@ -42,6 +44,7 @@ export default function Account({ session }) {
   return (
     <Card>
       <Heading>Email: {email}</Heading>
+      <Heading>Type: {type}</Heading>
       <Heading>Created at: {created_at}</Heading>
     </Card>
   );
