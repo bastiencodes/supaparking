@@ -2,6 +2,18 @@ import { supabase } from "../supabaseClient";
 
 const TABLE_NAME = "reservations";
 
+export const checkIfReservationExpired = async (plate) => {
+  // get reservations that match license plate and have expiry in the future
+  const reservations = await supabase
+    .from(TABLE_NAME)
+    .select("*")
+    .eq("license_plate", plate)
+    .gt("expiry", new Date().toISOString());
+
+  // if we have ongoing reservations for this license plate, isReservationExpired = false
+  return !reservations.length;
+};
+
 export const getPastReservations = async () => {
   const reservations = await supabase
     .from(TABLE_NAME)
